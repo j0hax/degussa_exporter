@@ -13,14 +13,21 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-// The name of the coin that is of tracking interest
-const KrugerrandName = "1 oz Krügerrand Goldmünze - Südafrika verschiedene Jahrgänge"
+var (
+	priceGuage = promauto.NewGaugeVec(
+		prometheus.GaugeOpts{
+			Namespace:   "degussa",
+			Subsystem:   "listing",
+			Name:        "euro",
+			Help:        "The price of a Degussa item",
+			ConstLabels: map[string]string{},
+		},
+		[]string{"name", "itemno", "price"},
+	)
+)
 
 func recordMetrics() error {
-	items, err := degussa.FilterTable(func(i degussa.Item) bool {
-		return i.Name == KrugerrandName
-	})
-
+	items, err := degussa.All()
 	if err != nil {
 		return err
 	}
@@ -29,15 +36,13 @@ func recordMetrics() error {
 		return errors.New("no items retrieved")
 	}
 
-	kr := items[0]
+	for _, item := range items {
+		b := float64(item.BuyPrice) / 100
+		s := float64(item.SellPrice) / 100
 
-	b := float64(kr.BuyPrice) / 100
-	s := float64(kr.SellPrice) / 100
-
-	buyPriceGauge.Set(b)
-	sellPriceGuage.Set(s)
-
-	log.Println("Fetched new prices")
+		priceGuage.WithLabelValues(item.Name, item.ItemNo, "buy").Set(b)
+		priceGuage.WithLabelValues(item.Name, item.ItemNo, "sell").Set(s)
+	}
 
 	return nil
 }
