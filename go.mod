@@ -3,7 +3,7 @@ module github.com/j0hax/degussa_exporter
 go 1.19
 
 require (
-	github.com/j0hax/degussa v0.0.0-20221225183812-1364dd9956df
+	github.com/j0hax/degussa v0.0.0-20230117120257-7ccf1685ab80
 	github.com/prometheus/client_golang v1.14.0
 )
 

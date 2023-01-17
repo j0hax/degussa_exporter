@@ -30,6 +30,8 @@ github.com/golang/protobuf v1.5.2/go.mod h1:XVQd3VNwM+JqD3oG2Ue2ip4fOMUkwXdXDdiu
 github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/j0hax/degussa v0.0.0-20221225183812-1364dd9956df h1:7TOcIpuXiorXBCpxqKlLy1Lvhe/CeXwtf3fciXf01qc=
 github.com/j0hax/degussa v0.0.0-20221225183812-1364dd9956df/go.mod h1:DOSHIUp0SKlOcZF7MwKxZBbC3wtk/S1G/jUpJ48eFuw=
+github.com/j0hax/degussa v0.0.0-20230117120257-7ccf1685ab80 h1:JuHEBjb2UMdD0Q9pRfj054Xoj04LOwbpEqVqxDImHfg=
+github.com/j0hax/degussa v0.0.0-20230117120257-7ccf1685ab80/go.mod h1:DOSHIUp0SKlOcZF7MwKxZBbC3wtk/S1G/jUpJ48eFuw=
 github.com/kennygrant/sanitize v1.2.4 h1:gN25/otpP5vAsO2djbMhF/LQX6R7+O1TB4yv8NzpJ3o=
 github.com/kennygrant/sanitize v1.2.4/go.mod h1:LGsjYYtgxbetdg5owWB2mpgUL6e2nfw2eObZ0u0qvak=
 github.com/matttproud/golang_protobuf_extensions v1.0.4 h1:mmDVorXM7PCGKw94cs5zkfA9PSy5pEvNWRP0ET0TIVo=
