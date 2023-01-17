@@ -44,13 +44,13 @@ func recordMetrics() error {
 
 var (
 	buyPriceGauge = promauto.NewGauge(prometheus.GaugeOpts{
-		Name: "krugerrand_buy_price",
-		Help: "The buy price of a 1 oz Krügerrand",
+		Name: "krugerrand_buy_euro",
+		Help: "The current buy price of a 1 oz Krügerrand",
 	})
 
 	sellPriceGuage = promauto.NewGauge(prometheus.GaugeOpts{
-		Name: "krugerrand_sell_price",
-		Help: "The sell price of a 1 oz Krügerrand",
+		Name: "krugerrand_sell_euro",
+		Help: "The current sell price of a 1 oz Krügerrand",
 	})
 )
 
