@@ -47,31 +47,20 @@ func recordMetrics() error {
 	return nil
 }
 
-var (
-	buyPriceGauge = promauto.NewGauge(prometheus.GaugeOpts{
-		Name: "krugerrand_buy_euro",
-		Help: "The current buy price of a 1 oz Krügerrand",
-	})
+// Continously record with a sample time
+func continuousRecord(sample time.Duration) {
+	for {
+		err := recordMetrics()
+		if err != nil {
+			log.Panic(err)
+		}
 
-	sellPriceGuage = promauto.NewGauge(prometheus.GaugeOpts{
-		Name: "krugerrand_sell_euro",
-		Help: "The current sell price of a 1 oz Krügerrand",
-	})
-)
+		time.Sleep(sample)
+	}
+}
 
 func main() {
-	go func() {
-		for {
-			err := recordMetrics()
-
-			if err != nil {
-				log.Panic(err)
-				time.Sleep(time.Minute)
-			} else {
-				time.Sleep(5 * time.Minute)
-			}
-		}
-	}()
+	go continuousRecord(5 * time.Minute)
 
 	http.Handle("/metrics", promhttp.Handler())
 	http.ListenAndServe(":7979", nil)
